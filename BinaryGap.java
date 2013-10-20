@@ -31,7 +31,6 @@ public class BinaryGap {
 		if (N<1) return 0;
 		String s = Integer.toBinaryString(N);
 		int i=0;
-	    int j= s.length()-1;
 		int max = 0;
 		int currentLength = 0;
 		for (i=1; i<s.length(); i++) {

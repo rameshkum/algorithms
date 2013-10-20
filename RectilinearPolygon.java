@@ -24,7 +24,7 @@ public class RectilinearPolygon {
 		int y=y2-y1;
 
 		long area;
-		if ((x>=0)&&(y>=0)) {
+		if ((x>=0) && (y>=0)) {
 		    area=x*y;
 		    if (area>Integer.MAX_VALUE) {
 		        area=-1;
