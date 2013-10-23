@@ -1,5 +1,5 @@
 
-package hr.grubic;
+package hr.grubic.algorithms;
 
 import java.util.ArrayList;
 
