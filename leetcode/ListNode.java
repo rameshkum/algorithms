@@ -1,4 +1,4 @@
-package hr.grubic.algorithms;
+package hr.grubic.algorithms.leetcode;
 
 public class ListNode {
 

@@ -1,5 +1,5 @@
 
-package hr.grubic.algorithms;
+package hr.grubic.algorithms.leetcode;
 
 import java.util.ArrayList;
 
