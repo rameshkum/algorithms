@@ -55,6 +55,9 @@ public class GrayCode {
     }
     
 	public static void main(String[] args) {
+		int a = 3;
+		a = a++;
+		System.out.println(a);
 		List<Integer> solution = new ArrayList<Integer>();
 		gray("",3, solution);
 		System.out.println(solution);
