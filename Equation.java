@@ -27,12 +27,15 @@ public class Equation {
 
 	public static List<Integer> generatePrimes(int N) {
 		boolean[] isPrime = new boolean[N + 1];
+		for (int i=0;i<N+1;i++) {
+			isPrime[i] = true;
+		}
 		List<Integer> prime = new ArrayList<Integer>();
 		for (int i = 2; i <= N; i++)
-			if (isPrime[i] == false) {
+			if (isPrime[i]) {
 				prime.add(i);
 				for (int j = 2; j * i <= N; j++)
-					isPrime[i * j] = true;
+					isPrime[i * j] = false;
 			}
 		return prime;
 	}
