@@ -57,17 +57,5 @@ public class FlattenBinaryTree {
 	      flatten(root.right);
 	       
 	    }
-	 
-	 public static void main(String[]args) {
-		 FlattenBinaryTree bt = new FlattenBinaryTree();
-		 TreeNode t = bt.new TreeNode(1);
-		 t.left = bt.new TreeNode(2);
-		 t.left.left = bt.new TreeNode(3);
-		 t.left.right = bt.new TreeNode(4);
-		 t.right = bt.new TreeNode(5);
-		 t.right.right = bt.new TreeNode(6);
-		 bt.flatten(t);
-		 
-		 
-	 }
+
 }
