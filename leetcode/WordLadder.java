@@ -24,7 +24,7 @@ public class WordLadder {
 	    while (!que.isEmpty()) {
 	        String s = que.poll();
 	        --lev1;
-	        System.out.println(s);
+	     
 	        for (int i = 0; i < s.length(); ++i) {
 	            for (char j = 'a'; j < 'z'; ++j) {
 	                char[] tArray = s.toCharArray();
@@ -51,6 +51,10 @@ public class WordLadder {
 	    return 0;
 	}
 	
+	static void shift(int[] ar) {
+		ar[0] = 5;
+	}
+	
 	public static void main(String[] args) {
 		HashSet<String> dictionary = new HashSet<String>();
 		dictionary.add("hot");
@@ -59,5 +63,9 @@ public class WordLadder {
 		dictionary.add("lot");
 		dictionary.add("log");		
 		 System.out.println(ladderLength("hit", "cog", dictionary));
+		 int[] ar = new int[] {3,4,5};
+		 shift(ar);
+		
+		 
 	}
 }
