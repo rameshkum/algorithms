@@ -66,6 +66,50 @@ public class SecondLargest {
 		return secondLargest;
 	}
 	
+	public static int kThLargestWithArray(int[]A, int k) {
+		int[] max = new int[k];
+		for (int i=0; i<k; i++) {
+			max[i] = Integer.MAX_VALUE;
+			int el = A[i];
+			int j=i;
+			while(j>0 && max[j-1] >el) {
+				max[j] = max[j-1];
+				j--;
+			}
+			max[j] = el;
+			
+		}
+		for (int i=k;i<A.length;i++) {
+			int el = A[i];
+			if (el < max[0]) continue;
+			int j = 0;
+			while(j<k-1 && max[j]<el) {
+				max[j] = max[j+1];
+				j++;
+			}
+			max[j] = el;
+		}
+		return max[0];
+	}
+	
+	private static int findPositonToInsert(int[] a, int key) {
+		int low = 0;
+        int high = a.length-1;
+
+        while (low <= high) {
+            int mid = (low + high) >>> 1;
+            int midVal = a[mid];
+
+            if (midVal < key)
+                low = mid + 1;
+            else if (midVal > key)
+                high = mid - 1;
+            else
+                return mid; // key found
+        }
+        return -(low + 1);  // key not found.
+	}
+
 	public static int kThLargest(int[] A, int k) {
 		for (int i=0; i<k;i++) {
 			int iMax = i;
@@ -105,9 +149,10 @@ public class SecondLargest {
 				14, 35, 3, 28, 59, 5, 44, 50, 76, 12,  48, 53, 1, 8, 6, 27};
 		int[] A = new int[] {
 				32, 35, 3, 28, 13, 5, 44, 50, 14, 76};
-		System.out.println(buildUpStructure(Arrays.asList(array)));
-		System.out.println(secondLargest(A));
 	//	System.out.println(buildUpStructure(Arrays.asList(array)));
+		int n = 5;
+		System.out.println(n >>> 1);
+		System.out.println(kThLargest(A,3));
 	}
 	
 }
