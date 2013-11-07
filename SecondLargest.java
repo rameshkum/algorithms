@@ -106,8 +106,8 @@ public class SecondLargest {
 		int[] A = new int[] {
 				32, 35, 3, 28, 13, 5, 44, 50, 14, 76};
 		System.out.println(buildUpStructure(Arrays.asList(array)));
-		System.out.println(kThLargest(A,2));
 		System.out.println(secondLargest(A));
+	//	System.out.println(buildUpStructure(Arrays.asList(array)));
 	}
 	
 }

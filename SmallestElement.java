@@ -12,7 +12,7 @@ public class SmallestElement {
 		if (k>N+M) {
 			return -1;
 		}
-		return kthSmallestAlternative(A,0, M, B, 0, N, k);
+		return kthSmallest(A,0, M-1, B, 0, N-1, k);
 	}
 	
 	private static int kthSmallest(int[]A, int pa, int qa, int[]B, int pb, int qb, int k) {
@@ -28,11 +28,6 @@ public class SmallestElement {
 		int midb = pb + (qb-pb)/2;
 		
 		int p = mida-pa + midb - pb +2;
-		System.out.println("----begin---");
-		System.out.println("p: " + p + " k: " + k);
-		System.out.println("mida: " + mida +  " midb: "+ midb);
-		printArray(A, pa, qa);
-		printArray(B, pb, qb);
 		
 		if (A[mida] > B[midb]) {
 			//A[mida] is bigger than everything in A[pa...mida-1]
@@ -150,12 +145,12 @@ public class SmallestElement {
 	
 	public static void main(String[] args) {
 		int[] A = new int[] {
-				1,2,3,4,5};
+				1,2,3,5};
 		int[] B = new int [] {
-				3,3,7,8,9
+				1,2,3,4
 		};
-	
-		System.out.println(kthSmallest(A,B,5));
+		int m = A.length;
+		int n = B.length;
 	}
 	
 }
