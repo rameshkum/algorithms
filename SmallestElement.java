@@ -28,28 +28,23 @@ public class SmallestElement {
 		int midb = pb + (qb-pb)/2;
 		
 		int p = mida-pa + midb - pb +2;
-		
-		if (A[mida] > B[midb]) {
-			//A[mida] is bigger than everything in A[pa...mida-1]
-			//A[mida] is bigger than everything in B[pb... midb]
-			if (k<p) {
-				//rule out A[mida...qa]
-				return kthSmallest(A,pa,mida-1,B,pb,qb,k);
+		if (k<p) {
+			//second half of one array can be discarded
+			//discard the one with the larger middle element
+			if (A[mida] > B[midb]) {
+				return kthSmallest(A, pa, mida-1, B, pb, qb, k);
 			} else {
-				//rule out first half of B; B[pb...midb]
-				return kthSmallest(A, pa, qa, B, midb+1, qb, k-(midb+1-pb));
-			}
-		}else {
-			//B[midb] is bigger than everything in B[pb... midb-1]
-			//B[midb] is bigger than everything in A[pa...mida]
-			if (k<p) {
-				//rule out B[midb...qb]
 				return kthSmallest(A, pa, qa, B, pb, midb-1, k);
-				
+			}
+		} else {
+			//first half of one array can be discarded
+			if (A[mida] > B[midb]) {
+				return kthSmallest(A, pa, qa, B, midb+1, qb, k-(midb+1-pb));
 			} else {
 				return kthSmallest(A, mida+1, qa, B, pb, qb, k-(mida+1-pa));
 			}
 		}
+		
 	}
 	
 	private static int kthSmallestAlternative(int[]A, int pa, int m, int[]B, int pb, int n, int k) {
@@ -105,35 +100,81 @@ public class SmallestElement {
 			//we've used up the B array
 			return A[qa-k+1];
 		}
-		int mida = pa + (qa-pa)/2;
+		int mida = pa+ (qa-pa)/2;
 		int midb = pb + (qb-pb)/2;
 		
-		int p = mida-pa + midb - pb +2;
-		System.out.println("----begin---");
-		System.out.println("p: " + p + " k: " + k);
-		System.out.println("mida:" + mida + qa + " midb: "+ midb);
-		printArray(A, pa, qa);
-		printArray(B, pb, qb);
-		
-		if (p<=k) {
-			//search first half
+		int p = (qa- mida) + (qb- midb);
+		System.out.println(p);
+	
+		if (p>=k) {
+			//first half of one array can be discarded
+			//discard the one with the smaller middle element
 			if (A[mida] > B[midb]) {
-				return kthLargest(A, pa, mida-1, B, pb, qb, k-(mida+1-pb));
-			} else {
-				return kthLargest(A, pa, qa, B, midb-1, qb, k-(midb+1-pb));
-			}
-		} else {
-			//go right
-			if (A[mida] > B[midb]) {
-				//ignore first part of B
 				return kthLargest(A, pa, qa, B, midb+1, qb, k);
 			} else {
-				return kthLargest(A, mida+1, qa, B, pb, qb, k);
+				return kthLargest(A, mida+1, qa, B, pb, midb-1, k);
+			}
+		} else {
+			//p<k
+			//second half of one array can be discarded
+			if (A[mida] > B[midb]) {
+				return kthLargest(A, pa, mida-1, B, pb, qb, k-(qa-mida+1));
+			} else {
+				return kthLargest(A, pa, qa, B, pb, midb-1, k-(qb-midb+1));
 			}
 		}
-		
 	}
 	
+	private static int kthLargestOfEqualSize(int[]A, int[]B, int k) {
+		int n = A.length;
+		int la = 0;
+		int ha = n-1;
+		int lb = 0;
+		int hb = n-1;
+		
+		while (true) {
+			if (la == ha) {
+				return A[la];
+			}
+			if (la > ha) {
+				return B[hb-k+1];
+			}
+			int mida = la + (ha-la)/2;
+			int midb = findSmallestLargerThan(B, A[mida]);
+			if (midb == -1) {
+				return A[ha-k+1];
+			}
+			//number of elements larger than A[mida]
+			int p = hb - midb + 1 + ha - mida;
+			if (p==k) {
+				return A[mida+1];
+			} 
+			if (p>k) {
+				la = mida+1;
+			} else {
+				k = k - (ha-mida);
+				ha = mida;
+			}
+		}
+	}
+	
+
+	private static int findSmallestLargerThan(int[] B, int value) {
+		int lo = 0;
+		int hi = B.length-1;
+		while (hi>lo) {
+			int mid = lo+(hi-lo)/2;
+			if (B[mid]<=value) {
+				lo = mid+1;
+			} else {
+				hi = mid;
+			}
+		}
+		if (hi==lo && B[lo] > value) {
+			return lo;
+		}
+		return -1;
+	}
 
 	private static void printArray(int[]A, int lo, int hi) {
 		for (int i=lo; i<=hi; i++) {
@@ -145,12 +186,11 @@ public class SmallestElement {
 	
 	public static void main(String[] args) {
 		int[] A = new int[] {
-				1,2,3,5};
+				2,3};
 		int[] B = new int [] {
-				1,2,3,4
+				1,4
 		};
-		int m = A.length;
-		int n = B.length;
+		System.out.println(kthLargest(A, B, 1));
 	}
 	
 }
