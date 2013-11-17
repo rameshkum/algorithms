@@ -61,9 +61,7 @@ public class GrayCode {
 		List<Integer> solution = new ArrayList<Integer>();
 		gray("",3, solution);
 		System.out.println(solution);
-		System.out.println(binaryStringToInteger("111"));
-		
-		
+		System.out.println(binaryStringToInteger("111"));	
 	}
 
 }
