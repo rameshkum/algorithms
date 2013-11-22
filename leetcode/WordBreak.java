@@ -1,5 +1,6 @@
 package hr.grubic.algorithms.leetcode;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 public class WordBreak {
@@ -48,6 +49,39 @@ public class WordBreak {
 			
 		}
 		return false;
+	}
+	
+	/**
+	 *  Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
+	 *	Return all such possible sentences. 
+	 * @param s
+	 * @param dict
+	 * @return
+	 */
+	public ArrayList<String> wordBreakFindWords(String s, Set<String> dict) {
+		ArrayList<String> solution = new ArrayList<String>();
+		if (s== null) return null;
+		wordBreakFindWords(s, dict, "", solution);
+ 		return solution;
+	}
+	
+	private void wordBreakFindWords(String s, Set<String> dict, String currentSentence, ArrayList<String> sentences) {
+		if (s == null)
+			return;
+		int n = s.length();
+		for (int i=1; i<=n; i++) {
+			String prefix = s.substring(0,i);
+			if (dict.contains(prefix)) {
+				currentSentence+= prefix;
+				currentSentence+= " ";
+				if (i==n) {
+					sentences.add(currentSentence.trim());
+					return;
+				}
+				wordBreakFindWords(s.substring(i,n), dict, currentSentence, sentences);
+			}
+		}
+		return;
 	}
 	
 }
