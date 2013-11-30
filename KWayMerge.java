@@ -134,6 +134,19 @@ public class KWayMerge {
 		fourthList.add(23);
 		fourthList.add(24);
 		
+		Node node = new Node(23, 0, 0);
+		Node node2 = new Node(24, 0, 0);
+		Node node3 = new Node(25, 0, 0);
+		Node node4 = new Node(23, 0, 0);
+		ArrayList<Node> minHeap = new ArrayList<Node>();
+		//for convenience, first element is null
+		//indexing starts at 1
+		minHeap.add(null);
+		insertIntoMinHeap(minHeap, node);
+		insertIntoMinHeap(minHeap, node2);
+		insertIntoMinHeap(minHeap, node3);
+		insertIntoMinHeap(minHeap, node4);
+		
 		System.out.println(merge(firstList, secondList, thirdList, fourthList));
 	}
 }

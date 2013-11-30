@@ -9,27 +9,25 @@ public class RotateMatrix {
 	public static void rotate(int[][]A) {
 		int N = A.length;
 		//1. step: transpose
-		for (int i=0;i<N; i++) {
-			for (int j=i+1;j<N;j++) {
-				int tmp = A[i][j];
-				A[i][j] = A[j][i];
-				A[j][i] = tmp;
+		for (int r=0;r<N; r++) {
+			for (int c=r+1;c<N;c++) {
+				int tmp = A[r][c];
+				A[r][c] = A[c][r];
+				A[c][r] = tmp;
 			}
 		}
-		//2.step: change columns
-		int i =0;
-		int j= N-1;
-		while (i<j) {
-			for (int k=0;k<N;k++) {
-				int tmp = A[k][i];
-				A[k][i] = A[k][j];
-				A[k][j] = tmp;
+		//2.step: change columns;
+		for (int c=0; c<N/2; c++) {
+			for (int r=0; r<N; r++) {
+				int tmp = A[r][N-c-1];
+				A[r][N-c-1] = A[r][c];
+				A[r][c] = tmp;
 			}
-			i++;
-			j--;
 		}
-		
-		
+	}
+	
+	public static void rotateAlternative(int[][]A) {
+		int N = A.length;
 	}
 	
 	public static void main(String[]args) {
