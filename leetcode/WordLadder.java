@@ -1,6 +1,5 @@
 package hr.grubic.algorithms.leetcode;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -51,10 +50,6 @@ public class WordLadder {
 	    return 0;
 	}
 	
-	static void shift(int[] ar) {
-		ar[0] = 5;
-	}
-	
 	public static void main(String[] args) {
 		HashSet<String> dictionary = new HashSet<String>();
 		dictionary.add("hot");
@@ -62,10 +57,7 @@ public class WordLadder {
 		dictionary.add("dot");
 		dictionary.add("lot");
 		dictionary.add("log");		
-		 System.out.println(ladderLength("hit", "cog", dictionary));
-		 int[] ar = new int[] {3,4,5};
-		 shift(ar);
-		
+		System.out.println(ladderLength("hit", "cog", dictionary));
 		 
 	}
 }
