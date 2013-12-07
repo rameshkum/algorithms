@@ -1,6 +1,10 @@
 package hr.grubic.algorithms;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Given a string, find the length of the longest substring without repeating characters. 
@@ -11,6 +15,20 @@ import java.util.Arrays;
  */
 public class UniqueSubstring {
 
+	public static String longestSubsequence(String s) {
+		 int[] letters = new int[26];
+		 Arrays.fill(letters, -1);
+		 StringBuilder sb = new StringBuilder();
+		 for (int i=0; i<s.length(); i++) {
+			 char c = s.charAt(i);
+			 if (letters[c-'a'] == -1) {
+				 sb.append(c);
+			 }
+			 letters[c-'a'] = i;
+		 }
+		 return sb.toString();
+	}
+	
 	public static String longestSubstring(String s) {
 		int len = 0;
 		int start = 0;
@@ -35,7 +53,7 @@ public class UniqueSubstring {
 				}
 				//substrings.add(s.substring(tmpStart, i));
 				Arrays.fill(letters, -1);
-				i = prev+1;
+				i = tmpStart+1;
 				tmpStart = i;
 				len = 0;
 			}
@@ -49,7 +67,7 @@ public class UniqueSubstring {
 	}
 	
 	public static void main(String[] args) {
-		String s = "babac";
+		String s = "abcabcbb";
 		System.out.println(longestSubstring(s));
 	}
 }
