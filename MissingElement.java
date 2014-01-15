@@ -34,6 +34,15 @@ Complexity:
  */
 public class MissingElement {
 
+	
+	public static int missingFromDoubleElements(int[]A) {
+		int x = A[0];
+		for (int i=1; i<A.length; i++) {
+			x^=A[i];
+		}
+		return x;
+	}
+	
 	public static int solution(int[]A) {
 		if (A== null || A.length < 0) return -1;
 		int N = A.length;
@@ -43,5 +52,10 @@ public class MissingElement {
 			sum+= A[i];
 		}
 		return (int) (expectedSum - sum);
+	}
+	
+	public static void main(String[] args) {
+		int[] x = new int[] {2, 1, 2, 1, 3};
+		System.out.println(missingFromDoubleElements(x));
 	}
 }
